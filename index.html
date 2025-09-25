@@ -1,65 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-
-        section {
-            background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            display: grid;
-            grid-template-columns: repeat(4, 60px);
-            gap: 10px;
-
-        }
-
-        #display {
-            grid-column: span 4;
-            height: 60px;
-            font-size: 24px;
-            text-align: right;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #2e2e2e;
-            color: #fff;
-        }
-
-        /* Butonat */
-        button {
-            height: 60px;
-            font-size: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #3c3c3c;
-            color: white;
-            cursor: pointer;
-
-        }
-
-        button:hover {
-            background-color: #5a5a5a;
-        }
-
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <title>Calculator</title>
 </head>
 <body>
 <section id="container">
-    <input type="text" id="display" readonly>
+    <label for="display"></label><input type="text" id="display" readonly>
     <button class="number">9</button>
     <button class="number">8</button>
     <button class="number">7</button>
@@ -78,77 +27,6 @@
     <button class="number">x</button>
     <button class="number">=</button>
 </section>
-
-<script>
-
-    const keys = document.querySelectorAll('button');
-    const display = document.getElementById('display');
-
-
-    let A = 0;
-    let B = null;
-    let operator = null;
-
-    function clear(){
-        A = 0;
-        B = null;
-        operator = null;
-
-    }
-
-    for(let i = 0; i < keys.length; i++){
-        keys[i].addEventListener('click', function (){
-                const value = keys[i].innerHTML;
-                if( value === 'x' || value === '+' || value === '-' || value === '/' || value === '='){
-                    if(value === '=') {
-                        if(A != null){
-                            B = display.value;
-                            let numA = Number(A);
-                            let numB = Number(B);
-
-                            if(operator === '/'){
-                                display.value = numA/numB
-                            } else if (operator === 'x'){
-                                display.value = numA*numB;
-                            } else if(operator === '+'){
-                                display.value = numA+numB;
-                            } else if(operator === '-'){
-                                display.value = numA-numB
-                            }
-
-                            clear()
-                        }
-                    } else {
-                        operator = value;
-                        A = display.value;
-                        display.value = "";
-                    }
-                } else if(value === 'AC'){
-                    if(value === 'AC'){
-                        clear();
-                        display.value = '';
-                    } else {
-                        display.value;
-                    }
-
-                } else {
-                    if(value === '.'){
-                        if(display.value !== '' && !display.value.includes(value)){
-                            display.value += value;
-                        }
-                    }else if(display.value === "0"){
-                        display.value = value;
-                    }else {
-                        display.value += value;
-                    }
-                }
-            }
-        )}
-
-
-
-
-
-</script>
+<script src="script.js" ></script>
 </body>
 </html>
